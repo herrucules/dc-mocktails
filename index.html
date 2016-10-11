@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Mocktails</title>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/libs/soundjs-0.6.2.min.js"></script>
+  <script src="js/libs/preloadjs-0.6.2.min.js"></script>  
+  <script src="js/libs/interact.min.js"></script>
+  <script src="js/libs/jquery.min.js"></script>
+  <script src="js/libs/TabWindowVisibilityManager.min.js"></script>
+  <script src="js/libs/screenfull.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+  <script src="js/libs/sammy0.7.6.min.js"></script>
+  <script src="js/libs/flowtype.js"></script>
+</head>
+<body>
+  <div>
+    <div id="interactive-container">
+      <div id="logo" class="" style="width: 18.0485%; height: 21.9104%; z-index: 1;">
+        <a href="#/"><img src="images/binus-logo.svg" alt="BINUS University"></a>
+      </div>
+      <div id="menu-icon" class="" style="width: 4.48718%; height: 7.22155%; z-index: 2; left: 92.1575%; top: 4.48384%;">
+        <img src="images/lib/menuicon.svg" data-alt-img="images/lib/close.svg" alt="Open menu">
+      </div>
+      <div id="menu-container" class="moveable" style="width: 30%; background-color: #fff; box-shadow:0 0 10px #8DC63F; left:70%;z-index:1">   
+        <ul>
+          <li><a href="#/opening">Introduction</a></li>
+          <li><a href="#/facts">Mocktails Overview</a></li>
+          <li><a href="#/how-to-make-mocktails">List of Mocktails</a></li>
+          <li><a href="#/assessment">Assessment</a></li>
+        </ul>     
+      </div>
+      <div id="preloader" style="z-index: 1; left: 44.9756%; top: 43.6713%; width: 8.45866%; height: 14.9957%;" class="moveabl">
+        <img src="images/loading-ring-alt.svg" alt="Loading..">
+      </div>
+      <div id="content"></div>
+    </div>
+  </div>
+  <script>
+  var appRoutes = [ 
+                  {id:'11', name:'title', url:'/', templateUrl:'partials/title.html'},
+                  {id:'12', name:'learning-objectives', url:'/learning-objectives', templateUrl:'partials/learning-objectives.html', tracked: 10},
+                  {id:'13', name:'opening', url:'/opening', templateUrl:'partials/opening.html', tracked: 10, audioURL:'sounds/01.mp3'},
+                  {id:'14', name:'opening2', url:'/opening2', templateUrl:'partials/opening2.html', tracked: 10, audioURL:'sounds/02.mp3'},
+                  {id:'15', name:'opening3', url:'/opening3', templateUrl:'partials/opening3.html', tracked: 10, audioURL:'sounds/03.mp3'},
+                  {id:'16', name:'facts', url:'/facts', templateUrl:'partials/facts.html', tracked: 10},
+                  {id:'17', name:'how-to-make-mocha-break', url:'/how-to-make-mocha-break', templateUrl:'partials/how-to-make-mocha-break.html',audioURL:'sounds/04.mp3',tracked: 10},
+                  {id:'18', name:'how-to-make-monte-bianco', url:'/how-to-make-monte-bianco', templateUrl:'partials/how-to-make-monte-bianco.html', tracked: 10},
+                  {id:'21', name:'how-to-shirley-temple', url:'/how-to-make-shirley-temple', templateUrl:'partials/how-to-make-shirley-temple.html', tracked: 10},
+                  {id:'22', name:'how-to-make-virgin-long-island-ice-tea', url:'/how-to-make-virgin-long-island-ice-tea', templateUrl:'partials/how-to-make-virgin-long-island-ice-tea.html', tracked: 10},
+                  {id:'23', name:'how-to-make-virgin-mojito', url:'/how-to-make-virgin-mojito', templateUrl:'partials/how-to-make-virgin-mojito.html', tracked: 10},
+                  {id:'24', name:'how-to-make-classic-martini', url:'/how-to-make-classic-martini', templateUrl:'partials/how-to-make-classic-martini.html', tracked: 10},
+                  {id:'1', name:'assessment', url:'/assessment', templateUrl: 'partials/assessment.html', tracked: 20, postTracked: true },
+                  {id:'2', name:'assessment-q2', url:'/assessment-q2', templateUrl: 'partials/assessment2.html', tracked: 20, postTracked: true },
+                  {id:'3', name:'assessment-q3', url:'/assessment-q3', templateUrl: 'partials/assessment3.html', tracked: 20, postTracked: true },
+                  {id:'4', name:'assessment-q4', url:'/assessment-q4', templateUrl: 'partials/assessment4.html', tracked: 20, postTracked: true },
+                  {id:'5', name:'assessment-q5', url:'/assessment-q5', templateUrl: 'partials/assessment5.html', tracked: 20, postTracked: true },
+                  {id:'19', name:'references', url:'/references', templateUrl: 'partials/references.html', tracked: 0 },
+                  {id:'20', name:'credits', url:'/credits', templateUrl: 'partials/credits.html', tracked: 0 }
+                 ];
+
+
+  var quizGroup = [
+  {"groupName":"default","maxTry":0,"quizes":[
+    {"quizID":"q1","page":"1"},
+    {"quizID":"q2","page":"2"},
+    {"quizID":"q3","page":"3"},
+    {"quizID":"q4","page":"4"},
+    {"quizID":"q5","page":"5"}
+    ]}
+  ];
+
+  var manifestToLoad = [
+    {id:'bgm', src:'sounds/bgm.mp3'},
+    {id: 'char-bartender', src: 'images/bartender.svg'},
+    {id: 'char-mulut-bartender', src: 'images/bicara-bartender.svg'},
+    {id: 'char-tangan-bartender', src: 'images/tanganBartender.svg'},
+    {id:'bar', src:'images/bar.svg', type: createjs.LoadQueue.IMAGE},
+    {id:'kitchen', src:'images/kitchen.svg', type: createjs.LoadQueue.IMAGE},
+    {id:'selectcocktail', src:'images/select-cocktail.svg', type: createjs.LoadQueue.IMAGE},
+    {id:'glass', src:'images/glass.svg', type: createjs.LoadQueue.IMAGE},
+    {id:'img1', src:'images/mocha-break.png'},
+    {id:'img2', src:'images/mocktails.png'},
+    {id:'img3', src:'images/shirley-temple.png'},
+    {id:'img4', src:'images/virgin-mojito.png'},
+    {id:'img5', src:'images/virgin-long-island-tea.png'},    
+    {id:'img6', src:'images/old fashioned glass.jpg'},
+    {id:'img7', src:'images/background.png'}
+  ];
+
+
+  </script>
+
+  <script src="js/libs/snap.svg-min.js"></script>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

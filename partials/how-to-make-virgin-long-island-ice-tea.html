@@ -1,0 +1,35 @@
+<div id="div1" style="width:100%;height:100%;background:#000">
+  <video src="videos/Virgin Long Island Tea.mp4" autoplay controls></video>
+</div>
+
+<div id="div2" style="    left: 93%;
+    top: 84%;
+    width: 5%">
+  <a href="#/how-to-make-mocktails">
+    <img src="images/lib/closebtn.svg" alt="Close video">
+  </a>
+</div>
+
+<script>
+  interactiveApp.muteBGM();
+
+  interactiveApp.videoHandle = $('video')[0];
+  interactiveApp.videoHandle.onended = function() {
+    $('#video').remove();
+    
+    interactiveApp.unMuteBGM();
+
+    interactiveApp.videoHandle = null;
+    $('#div2 a').trigger('click');
+  };
+  $('#logo').hide();
+
+  interactiveApp.outAnim = function (cb) {
+
+    interactiveApp.unMuteBGM();
+
+    interactiveApp.videoHandle = null;
+    $('#video').remove();
+    cb();
+  }
+</script>

@@ -1,0 +1,102 @@
+<div id="div1" style="width: 70%; left: 14.7742%; top: 10.8846%;" class="">
+  <img src="images/kitchen.svg" alt="kitchen background">
+</div>
+
+<div id="div2" class="moveabl" style="left: 36.8772%; top: 13.0898%; width: 33.5854%; height: 47.4926%; opacity: 1; background: url(images/bg-chart.svg) #E6E7E8;">
+  
+</div>
+
+<div id="div3" class="moveabl" style="border-radius: 50px; left: 41.3108%; top: 10.0088%; width: 25.5755%; height: 6.11534%; opacity: 1; background: rgb(68, 68, 68);">
+  <p style="color:#fff;text-align:center">Restaurant's profit</p>
+</div>
+
+<!-- <div id="div5" class="moveabl" style="left: 71.2387%; top: 24.6912%; width: 5%; height: 8.59729%; opacity: 1;">
+  <img src="images/icon-beverage.svg" alt="Beverage Legend">
+</div>
+
+<div id="div6" class="moveabl" style="left: 71.1397%; top: 36.0559%; width: 5%; height: 8.44646%; opacity: 1;">
+  <img src="images/icon-food.svg" alt="Food Legend">
+</div> -->
+
+<div id="div7" class="moveabl" style="width: 5.181%; height: 27.2389%; border-radius: 20px; left: 56.1708%; top: 23.1241%; opacity: 1; background-color: rgb(95, 58, 22);">  
+</div>
+
+<div id="div8" class="moveabl" style="width: 5.0905%; height: 31.3113%; border-radius: 20px; left: 46.2797%; top: 19.0797%; opacity: 1; background-color: rgb(39, 168, 224);">  
+</div>
+
+<div id="div9" class="moveabl" style="left: 46.2118%; top: 41.6349%; width: 5%; height: 8.72569%; opacity: 1;">
+  <img src="images/icon-beverage.svg" alt="Beverage">
+</div>
+
+<div id="div10" class="moveabl" style="left: 56.2274%; top: 41.7232%; width: 5%; height: 8.72219%; opacity: 1;">
+  <img src="images/icon-food.svg" alt="Food">
+</div>
+
+<div id="div11" class="moveabl" style="left: 44.3156%; top: 50.4481%; opacity: 1;">
+  <p style="font-size:60%">Beverage</p>
+</div>
+
+<div id="div12" class="moveabl" style="left: 56.4593%; top: 50.5944%; opacity: 1;">
+  <p style="font-size:60%">Food</p>
+</div>
+
+<div id="div4" class="moveabl" style="width: 24.1157%; left: 15.4312%; top: 16.1302%; height: 69.5959%;">
+    <svg id="host" style="width:100%;height:100%" viewbox="0 0 210 350"></svg>
+</div>
+
+<div id="nav">
+  <a id="nav-next"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+  <a id="nav-prev"><img src="images/lib/prevbtn.svg" alt="Previous"></a>
+</div>
+
+<div id="pointer" class="moveable" style="width: 3%; height: 7.36879%; left: 93.8677%; top: 92.0106%; opacity: 1;">
+  <a ><img src="images/kursor.svg" alt="pointer"></a>
+</div>
+
+<script>
+  interactiveApp.outAnim = function (cb) {
+    cb();
+  };
+
+  var tl = new TimelineLite();
+  tl.from('#div2, #div3', 1, {opacity:0}, 6);
+  // legend
+  tl.from('#div11', .5, {opacity:0, left:'40%'});
+  tl.from('#div12', .5, {opacity:0, left:'40%'});
+  tl.from('#div9, #div10', .5, {opacity:0, top: '47%'});
+  // bar chart
+  tl.from('#div7, #div8', .5, {opacity:0,top:'42.5741%',height:'10%'}, '-=.5')
+
+  var s = Snap('#host');
+  var mulutDiam;
+  
+  var s = Snap('#host');
+  var f = Snap.parse(interactiveApp.preloadjs.getResult("char-bartender").innerHTML);
+  s.append(f.select('g'));
+  var obj = Snap.select('#tanganKanan');
+  if (obj) obj.remove();        
+
+  obj = Snap.select('#mulut');
+  if (obj) {
+    mulutDiam = obj;
+    obj.remove();             
+  }
+
+  var f = Snap.parse(interactiveApp.preloadjs.getResult("char-tangan-bartender").innerHTML);  
+  s.append(f.select('g'));    
+
+  f = Snap.parse(interactiveApp.preloadjs.getResult("char-mulut-bartender").innerHTML);      
+  s.append(f.select('g'));  
+
+ TweenMax.set('#pointer', {opacity:0});
+  try {
+    interactiveApp.audioHandles[interactiveApp.currentRoute.name].on('complete', function() {
+      TweenMax.set('#pointer', {opacity:1});
+      TweenMax.from('#pointer', 1, {top:'50%', left:'50%'});
+      var obj = Snap.select('#bicara');
+      if (obj) obj.remove();
+      s.append(mulutDiam);
+    });
+  } catch (er) {}
+
+</script>

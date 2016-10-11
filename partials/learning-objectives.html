@@ -1,0 +1,31 @@
+<div id="div1" style="    width: 50%;
+    top: 26%;
+    left: 15%;
+    text-align: right;">
+  <h1>Learning Objectives</h1>
+  <p>By the end of this module, students  will be able to make many varieties of mocktails.</p>
+</div>
+
+<div id="div4" class="moveable" style="width: 24.1157%; left: 70.0095%; top: 16.1302%; height: 69.5959%;">
+    <svg id="host" style="width:100%;height:100%" viewbox="0 0 210 350"></svg>
+</div>
+
+<div id="nav">
+  <a id="nav-next"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+</div>
+
+<script>
+
+  var tl = new TimelineLite();
+  tl.from('#div1', .5, {left:0, opacity:0});
+
+  interactiveApp.outAnim = function out(cb) {
+    tl.reverse();
+    tl.vars.onReverseComplete = cb;
+  }
+
+  var s = Snap('#host');
+        var f = Snap.parse(interactiveApp.preloadjs.getResult("char-bartender").innerHTML);
+        s.append(f.select('g'));
+
+</script>

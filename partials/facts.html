@@ -1,0 +1,71 @@
+<div id="div1" style="top: 26.4268%; left: 36.3768%; width: 30%;" class="moveabl">
+  <img src="images/glass.svg" alt="Cocktail glass">
+</div>
+
+<div id="div2" style="top: 53.2905%; left: 67.2312%; width: 29.0534%; transform: matrix(1, 0, 0, 1, 0, 0); height: 25.5595%;" class="moveabl">
+  <img src="images/bubblegreen.svg" alt="bubble text">
+</div>
+
+<div id="div3" style="top: 49.1029%; left: 3.63391%; width: 34.8859%; transform: matrix(1, 0, 0, 1, 0, 0); height: 30.4323%;" class="moveabl">
+  <img src="images/bubbleblue.svg" alt="bubble text">
+</div>
+
+<div id="div4" style="top: 1.88334%;left: 52.1091%;width: 30%;transform: matrix(1, 0, 0, -1, 0, 0);" class="moveabl">
+  <img src="images/bubblered.svg" alt="bubble text">
+</div>
+
+<div id="div8" style="top: 35.6694%; left: 68.3385%; width: 19.2569%; transform: matrix(1, 0, 0, -1, 0, 0); height: 15.3436%;" class="moveabl">
+  <img src="images/bubblegreen.svg" alt="bubble text">
+</div>
+
+<div id="div9" style="top: 20.7859%; left: 3.47686%; width: 33.3572%; transform: matrix(1, 0, 0, -1, 0, 0); height: 26.7181%;" class="moveabl">
+  <img src="images/bubbleblue.svg" alt="bubble text">
+</div>
+
+<div class="moveabl" id="div5" style="top: 52.3735%; left: 6.12874%; width: 20.3423%; opacity: 1; height: 20.5508%;">
+  <p style="color:#fff;font-size:50%">A smooth blend of only non-alcoholic beverages, which could be fresh fruit juices, syrups, cream, herbs and spices.</p>
+</div>
+
+<div class="moveabl" id="div6" style="top: 5.72034%; left: 62.3449%; width: 16.4897%; opacity: 1; height: 21.9942%;">
+  <p style="color:#fff;font-size:50%">Designed specifically for those who do not take alcoholic beverages or need to refrain from them.</p>
+</div>
+
+<div class="moveabl" id="div7" style="left: 76.6818%; top: 55.0787%; width: 19.9606%; opacity: 1; height: 18.4322%;">
+  <p style="color:#fff;font-size:50%;">Mocktails, an abbreviation for "mock cocktails", are festive, non-alcoholic party drinks.
+</p>
+</div>
+
+<div class="moveabl" id="div10" style="left: 75.5308%; top: 39.2909%; width: 9.82029%; height: 9.32865%;">
+  <p style="color:#fff;font-size:50%;">For all ages people</p>
+</div>
+
+<div class="moveabl" id="div11" style="left: 5.45086%; top: 27.7774%; width: 19.8453%; height: 17.7999%;">
+  <p style="color:#fff;font-size:50%;">The word "mock" implying a facade of the alcoholic cocktail without any of alcoholic content.
+</p>
+</div>
+
+<div id="nav">
+  <a id="nav-next"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+  <a id="nav-prev"><img src="images/lib/prevbtn.svg" alt="Previous"></a>
+</div>
+
+<div id="pointer" class="moveabl" style="width: 3%; height: 7.36879%; left: 93.8677%; top: 92.0106%; opacity: 1;">
+  <a ><img src="images/kursor.svg" alt="pointer"></a>
+</div>
+
+<script>
+  var tl = new TimelineLite();
+  tl.from('#div1', .5, {left:"100%"});
+  tl.from("#div2", .5, {scale:0});
+  tl.from("#div7", .5, {opacity:0},"-=0.3");
+  tl.from("#div8", .5, {scale:0});
+  tl.from("#div10", .5, {opacity:0},"-=0.3");
+  tl.from("#div4", .5, {scale:0});
+  tl.from("#div6", .5, {opacity:0},"-=0.3");
+  tl.from("#div9", .5, {scale:0});
+  tl.from("#div11", .5, {opacity:0},"-=0.3");
+  tl.from("#div3", .5, {scale:0});
+  tl.from("#div5", .5, {opacity:0},"-=0.3");
+  tl.from('#pointer', 1, {opacity:0, top:'50%', left:'50%'}, '+=4');
+
+</script>

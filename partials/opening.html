@@ -1,0 +1,69 @@
+<div id="div1" style="width: 70%; left: 14.7742%; top: 10.8846%;" class="">
+  <img src="images/kitchen.svg" alt="kitchen background">
+</div>
+
+<div class="" id="div3" style="width: 13.8596%; height: 28.4422%; left: 31.7625%; top: 5.14113%;">
+  <img src="images/bubble.svg" alt="bubble container">
+</div>
+<div class="" id="div2" style="opacity: 1; left: 32.5634%; top: 6.65323%; width: 12.1868%; height: 27.3097%;">
+  <img src="images/mocktails.png" alt="Mocktails">
+</div>
+
+<div id="div4" class="" style="width: 24.1157%; left: 15.4312%; top: 16.1302%; height: 69.5959%;">
+    <svg id="host" style="width:100%;height:100%" viewbox="0 0 210 350"></svg>
+</div>
+
+<div id="nav">
+  <a id="nav-next"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+  <a id="nav-prev"><img src="images/lib/prevbtn.svg" alt="Previous"></a>
+</div>
+
+<div id="pointer" class="moveable" style="width: 3%; height: 7.36879%; left: 93.8677%; top: 92.0106%; opacity: 1;">
+  <a ><img src="images/kursor.svg" alt="pointer"></a>
+</div>
+<script>
+
+  var s = Snap('#host');
+  var mulutDiam;
+  
+  var s = Snap('#host');
+  var f = Snap.parse(interactiveApp.preloadjs.getResult("char-bartender").innerHTML);
+  s.append(f.select('g'));
+
+  var tl = new TimelineLite();
+  tl.from('#div4', .5, {left:'70.0095%'});
+  tl.from('#div1', .5, {left:'100%', 
+    onComplete: function() {
+      var obj = Snap.select('#tanganKanan');
+      if (obj) obj.remove();        
+
+      obj = Snap.select('#mulut');
+      if (obj) {
+        mulutDiam = obj;
+        obj.remove();             
+      }
+
+      var f = Snap.parse(interactiveApp.preloadjs.getResult("char-tangan-bartender").innerHTML);
+      f.selectAll('animateTransform').attr({begin: tl.time().toFixed(2)+'s'});
+      s.append(f.select('g'));    
+
+      f = Snap.parse(interactiveApp.preloadjs.getResult("char-mulut-bartender").innerHTML);      
+      s.append(f.select('g'));      
+    }
+  });
+  tl.from('#div2, #div3', .5, {top:'10%', opacity:0}, "9");
+
+  interactiveApp.outAnim = null;
+
+  TweenMax.set('#pointer', {opacity:0});
+  try {
+    interactiveApp.audioHandles[interactiveApp.currentRoute.name].on('complete', function() {
+      TweenMax.set('#pointer', {opacity:1});
+      TweenMax.from('#pointer', 1, {top:'50%', left:'50%'});
+      var obj = Snap.select('#bicara');
+      if (obj) obj.remove();
+      s.append(mulutDiam);
+    });
+  } catch (er) {}
+  
+</script>

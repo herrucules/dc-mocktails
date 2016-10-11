@@ -1,0 +1,66 @@
+<div id="div1" style="width: 65.6021%; left: 15.6743%; top: 8.13264%; height: 74.812%;" class="">
+  <img src="images/bar.svg" alt="bar background">
+</div>
+
+
+<div id="div2" class="moveable" style="left: 65.724%; top: 34.9265%; width: 3.37104%; height: 12.7804%;">
+  <a href="#/facts"><img src="images/alcohol.svg" alt="alcohol"></a>
+</div>
+
+<div id="div3" class="moveable" style="width:4.57%;height:12.78% ;left: 63.6813%; top: 41%;">
+  <a href="#/facts"><img src="images/kursor.svg" alt="pointer"></a>
+</div>
+
+<div id="div4" class="moveabl" style="width: 24.1157%; left: 15.4312%; top: 16.1302%; height: 69.5959%;">
+    <svg id="host" style="width:100%;height:100%" viewbox="0 0 210 350"></svg>
+</div>
+
+<div id="nav">
+  <a id="nav-next"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+  <a href="#/opening" id="nav-prev"><img src="images/lib/prevbtn.svg" alt="Previous"></a>
+</div>
+
+<script>
+
+  var tl = new TimelineMax();
+  tl.from('#div1', .5, {left:"100%"});
+  tl.from('#div3', .5, {opacity:0, top:'50.9945%', left:'56%'}, 14);
+  tl.from('#div2', .5, {opacity:0}, '-=.5');
+  tl.from('#div2', .5, {transformOrigin:'center', scale:1.5, repeat:-1, yoyo:true}, '-=.5');
+
+  interactiveApp.outAnim = null;
+  function out(cb) {
+    tl.reverse();
+    tl.vars.onReverseComplete = cb;
+  }
+
+  var s = Snap('#host');
+  var mulutDiam;
+  
+  var s = Snap('#host');
+  var f = Snap.parse(interactiveApp.preloadjs.getResult("char-bartender").innerHTML);
+  s.append(f.select('g'));
+  var obj = Snap.select('#tanganKanan');
+  if (obj) obj.remove();        
+
+  obj = Snap.select('#mulut');
+  if (obj) {
+    mulutDiam = obj;
+    obj.remove();             
+  }
+
+  var f = Snap.parse(interactiveApp.preloadjs.getResult("char-tangan-bartender").innerHTML);  
+  s.append(f.select('g'));    
+
+  f = Snap.parse(interactiveApp.preloadjs.getResult("char-mulut-bartender").innerHTML);      
+  s.append(f.select('g'));  
+
+  try {
+    interactiveApp.audioHandles[interactiveApp.currentRoute.name].on('complete', function() {
+      var obj = Snap.select('#bicara');
+      if (obj) obj.remove();
+      s.append(mulutDiam);
+    });
+  } catch (er) {}
+
+</script>

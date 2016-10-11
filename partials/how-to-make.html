@@ -1,0 +1,46 @@
+<div id="div1" style="top: 5%; width: 56%; left: 22%; opacity: 1;">
+  <img src="images/select-cocktail.svg" alt="Select mocktail">
+</div>
+
+<div id="div2" style="width: 12%; left: 44%; top: 6%; z-index: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
+  <a href="#/how-to-make-virgin-mojito"><img src="images/virgin-mojito.png" alt="How to make virgin-mojito mocktail"></a>
+</div>
+
+<div id="div3" style="width: 11.5%; left: 66%; top: 32%; transform: matrix(1, 0, 0, 1, 0, 0);">
+  <a href="#/how-to-make-mocha-break"><img src="images/mocha-break.png" alt="How to make mocha-break mocktail"></a>
+</div>
+
+<div id="div4" style="width: 11.5%; left: 57.5%; top: 75%; transform: matrix(1, 0, 0, 1, 0, 0);">
+  <a href="#/how-to-make-virgin-long-island-ice-tea"><img src="images/virgin-long-island-tea.png" alt"How to make virgin-long-island-ice-tea mocktail"></a>
+</div>
+
+<div id="div5" style="width: 11.5%; left: 31%; top: 75%; transform: matrix(1, 0, 0, 1, 0, 0);">
+  <a href="#/how-to-make-monte-bianco"><img src="images/mocktails.png" alt="How to make monte bianco mocktail"></a>
+</div>
+
+<div id="div6" style="width: 11.5%; left: 22.5%; top: 32%; transform: matrix(1, 0, 0, 1, 0, 0);">
+  <a href="#/how-to-make-shirley-temple"><img src="images/shirley-temple.png" alt="How to make shirley-temple mocktail"></a>
+</div>
+
+<div style="left: 55.5006%; top: 19.0644%; width: 14.5892%; height: 5%; opacity: 1; background: rgb(39, 170, 225);" class="moveabl" id="div7"><p style="font-size:50%;color:#fff;text-align:center;">Virgin Mojito</p></div>
+<div style="left: 65.5017%; top: 27.2468%; width: 12.8065%; height: 5%; opacity: 1; background: rgb(39, 170, 225);" class="moveabl" id="div8"><p style="font-size:50%;color:#fff;text-align:center;">Mocha Break</p></div>
+<div style="width: 22.0531%; height: 5%; left: 58.658%; top: 64.295%; opacity: 1; background: rgb(39, 170, 225);" class="moveabl" id="div9"><p style="font-size:50%;color:#fff;text-align:center;">Virgin Long Island Ice Tea</p></div>
+<div style="left: 28.974%; top: 64.253%; width: 12.5035%; height: 5%; opacity: 1; background: rgb(39, 170, 225);" class="moveabl" id="div10"><p style="font-size:50%;color:#fff;text-align:center;">Monte Bianco</p></div>
+<div style="left: 19.5758%; top: 27.4905%; width: 14.8552%; height: 5%; opacity: 1; background: rgb(39, 170, 225);" class="moveabl" id="div11"><p style="font-size:50%;color:#fff;text-align:center;">Shirley Temple</p></div>
+
+
+<div id="nav">
+  <a href="#/assessment"><img src="images/lib/nextbtn.svg" alt="Next"></a>
+  <a id="nav-prev"><img src="images/lib/prevbtn.svg" alt="Previous"></a>
+</div>
+
+<script>
+  var tl = new TimelineLite();
+  tl.from("#div1, #div7, #div8, #div9, #div10, #div11", 1, {opacity:0});
+  tl.from('#div2', .5, {scale:0}, "-=0.3");
+  tl.from('#div3', .5, {scale:0}, "-=0.3");
+  tl.from('#div4', .5, {scale:0}, "-=0.3");
+  tl.from('#div5', .5, {scale:0}, "-=0.3");
+  tl.from('#div6', .5, {scale:0}, "-=0.3");
+
+</script>

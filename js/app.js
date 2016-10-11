@@ -26,7 +26,7 @@ $(function() {
     $('#content, #menu-icon, #menuContainer').show();
 
     // play bgm on desktop
-    //interactiveApp.bgm = createjs.Sound.play("bgm", {loop:-1, volume:interactiveApp.bgmVol}); 
+    interactiveApp.bgm = createjs.Sound.play("bgm", {loop:-1, volume:interactiveApp.bgmVol}); 
 
     initRouting();    
   }
